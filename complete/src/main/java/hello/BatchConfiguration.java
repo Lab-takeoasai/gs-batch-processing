@@ -67,8 +67,8 @@ public class BatchConfiguration {
 
     // tag::jobstep[]
     @Bean
-    public Job importUserJob(JobCompletionNotificationListener listener) {
-        return jobBuilderFactory.get("importUserJob")
+    public Job anyNameYouWant(JobCompletionNotificationListener listener) {
+        return jobBuilderFactory.get("JobName on Log")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
                 .flow(step1())
@@ -78,7 +78,7 @@ public class BatchConfiguration {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1")
+        return stepBuilderFactory.get("step1Name on Log")
                 .<Person, Person> chunk(10)
                 .reader(reader())
                 .processor(processor())
